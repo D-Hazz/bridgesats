@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Blog - Bridgesats</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static "assets/img/favicon.webp" %}" rel="icon">
+  <link href="{% static "assets/img/favicon.webp" %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "assets1/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/bootstrap-icons/bootstrap-icons.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/aos/aos.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/glightbox/css/glightbox.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/swiper/swiper-bundle.min.css" %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static "assets1/css/main.css" %}" rel="stylesheet">
+
+</head>
+
+<body class="blog-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="{% url "accueille" %}" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{% static "assets/img/favicon.webp" %}" alt=""> 
+        <h1 class="sitename">BRIDGESATS</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url "accueille" %}" >Accueil<br></a></li>
+          <li class="dropdown"><a href="#"><span>Plus</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="{% url "accueille" %}">Partenaire</a></li>
+              <li><a href="{% url "academie" %}">Academie</a></li>
+              <li><a href="{% url "equipe" %}">Equipe</a></li>     
+              
+
+              <li class="d-flex flex-row align-items-center justify-content-center">
+                <button id="theme-toggle" class="btn btn-sm btn-secondary rounded-5 d-flex flex-row align-items-center justify-content-center">
+                  <i style="font-size: x-large;" class="bi bi-moon" id="theme-icon"></i>
+                </button> 
+              </li>
+              <li class="d-flex flex-row align-items-center justify-content-center mt-3">
+                <a class="btn btn-sm rounded-5 btn-outline-secondary text-secondary" data-bs-toggle="modal" data-bs-target="#authModal">Newsletter</a>
+              </li>
+            </ul>
+          </li>
+          
+          <li><a href="{% url "bitcoin" %}" class="active">Bitcoin</a></li>
+          <li><a href="{% url "laboratoire" %}">Laboratoire</a></li>
+          <li><a href="{% url "immobilier" %}">Immobilier</a></li>
+          <li><a href="{% url "informatique" %}">informatique</a></li>
+          <li><a href="{% url "production" %}">Production Audio-Visuelle</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url({% static "assets/img/hero-bg.jpg" %});">
+      <div class="container">
+        {% if query %}
+        <h1>Recherche pour {{ query }} ...</h1>
+        {% else %}
+        <h1>Blog</h1>
+        {% endif %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade-show" role="alert">
+                <strong>Message :</strong>{{ message }}
+                <button type="button" class="btn btn-sm btn-primary btn-outline rounded-btn close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url "accueille" %}">Accueil</a></li>
+            <li class="current">Blog</li>
+          </ol>
+
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-8">
+
+          <!-- Blog Posts Section -->
+          <section id="blog-posts" class="blog-posts section">
+
+            <div class="container">
+              <div class="row gy-4">
+                {% for i in object_list %}
+                <div class="col-lg-6">
+                  <article>
+
+                    <div class="post-img">
+                      <img src="{{ i.image.url }}" alt="" class="img-fluid">
+                    </div>
+                  <div class="d-flex flex-row justify-content-between">
+                    <p class="post-category">{{ i.category }}</p>
+                  <span>{{ i.comment_count }} <i class="bi bi-heart"></i></span>
+                    <span class="post-category">
+                    {% if i.comment_count == 0 %}
+                          0 Réactions
+                    {% else %}
+                        {{ i.comment_count }} Réactions
+                    {% endif %} 
+                    </span>
+                  </div>
+                    <h2 class="title">
+                      <a href="detail/{{ i.slug }}" data-url="detail/{{ i.slug }}">{{ i.title }}</a>
+                    </h2>
+
+                    <div class="d-flex align-items-center">
+                      <img src="{% static "assets1/img/userdefault.png" %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                      <div class="post-meta">
+                        <p class="post-author">{{ i.author }}</p>
+                        <p class="post-date">
+                          <time datetime="2022-01-01">{{ i.date_added }}</time>
+                        </p>
+                      </div>
+                    </div>
+
+                  </article>
+                </div><!-- End post list item -->
+                {% endfor %}
+
+              </div>
+            </div>
+            {% if is_paginated %}
+        <ul class="pagination justify-content-center mt-3">
+
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                    <a class="page-link font-weight-bold" aria-disabled="true" tabindex="-1" href="{% url 'blog' %}?page={{ page_obj.previous_page_number }}">Précedent</a>
+                    </li>
+                    <li class="page-item" style="display:none"><a class="page-link" href="#">{{ page_obj.previous_page_numbe }}</a></li>
+                {% endif %}
+
+                <li class="page-item active" aria-current="page">
+                <a class="page-link" href="">{{ page_obj.number }}<span class="sr-only"></span></a>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li style="display:none" class="page-item"><a class="page-link" href="#">{{ page_obj.next_page_numbe }}</a></li>
+                    <li class="page-item">
+                    <a class="page-link font-weight-bold " aria-disabled="true" tabindex="+1" href="{% url 'blog' %}?page={{page_obj.next_page_number }}">Suivant</a>
+                    </li>
+                {% endif %}
+        </ul>
+      {% endif %}
+
+          </section><!-- /Blog Posts Section -->
+
+        </div>
+
+        <div class="col-lg-4 sidebar">
+
+          <div class="widgets-container">
+
+            <!-- Search Widget -->
+            <div class="search-widget widget-item">
+
+              <h3 class="widget-title">Explorez</h3>
+              <form action="{% url "search" %}" method="get">
+                
+                <input type="text" placeholder="Recherchez par le champ-ci" name="query">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+              </form>
+
+            </div><!--/Search Widget -->
+
+            <!-- Categories Widget -->
+            <div class="categories-widget widget-item">
+
+              <h3 class="widget-title">Categories</h3>
+              <ul>
+                {% for i in category  %}
+                <li><a href="{% url 'blog-cat' i.cat_id %}">{{ i }} <span></span></a></li>
+                {% endfor %}
+              </ul>
+
+            </div><!--/Categories Widget -->
+
+            <!-- Recent Posts Widget -->
+            <div class="recent-posts-widget widget-item">
+
+              <h3 class="widget-title">Articles récents</h3>
+              {% for post in object_list %}
+              <div class="post-item">
+                <img src="{{ post.image.url }}" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="detail/{{ post.slug }}">{{ post.title }}</a></h4>
+                  <time datetime="2020-01-01">{{ post.date_added }}</time>
+                </div>
+              </div><!-- End recent post item-->
+              {% endfor %}
+              
+            </div><!--/Recent Posts Widget -->
+
+          <!-- Tags Widget -->
+          <div class="tags-widget widget-item">
+
+            <h3 class="widget-title">Tags</h3>
+            <p>Coming soon</p>
+            <ul>
+              <li><a href="#">bitcoin</a></li>
+              <li><a href="#">immobilier</a></li>
+              <li><a href="#">laboratoire</a></li>
+              <li><a href="#">podcasts</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">video</a></li>
+              <li><a href="#">academie</a></li>
+              <li><a href="#">blog</a></li>
+              <li><a href="#">minage</a></li>
+              
+              
+            </ul>
+
+          </div><!--/Tags Widget -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container copyright text-center">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">BRIDGESATS</strong> <span>Tout droit revervé</span></p>
+      <div class="credits">
+
+        Conçu par <a href="{% url "admin:index" %}">Bridgesats</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static "assets1/vendor/php-email-form/validate.js" %}"></script>
+  <script src="{% static "assets1/vendor/aos/aos.js" %}"></script>
+  <script src="{% static "assets1/vendor/glightbox/js/glightbox.min.js" %}"></script>
+  <script src="{% static "assets1/vendor/swiper/swiper-bundle.min.js" %}"></script>
+  <script src="{% static "assets1/vendor/imagesloaded/imagesloaded.pkgd.min.js" %}"></script>
+  <script src="{% static "assets1/vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static "assets1/js/main.js" %}"></script>
+  <script>
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark-background');
+
+  if (document.documentElement.classList.contains('dark-background')) {
+    themeIcon.classList.remove('bi-moon');
+    themeIcon.classList.add('bi-sun');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    themeIcon.classList.remove('bi-sun');
+    themeIcon.classList.add('bi-moon');
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// Check for saved theme on page load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.documentElement.classList.add('dark-background');
+  themeIcon.classList.remove('bi-moon');
+  themeIcon.classList.add('bi-sun');
+}
+
+themeToggleBtn.addEventListener('click', toggleTheme);
+</script>
+  <script>
+    document.querySelectorAll('a[data-url]').forEach(link => {
+      link.addEventListener('click', (event) => {
+          event.preventDefault(); // Empêche le comportement par défaut du lien
+          const newUrl = window.location.origin + '/' + link.dataset.url;
+          window.location.href = newUrl;
+      });
+    });
+  </script>
+
+</body>
+
+</html>

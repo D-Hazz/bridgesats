@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Bridgesats sarl.home</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static "assets/img/favicon.webp" %}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/bootstrap-icons/bootstrap-icons.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/aos/aos.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/swiper/swiper-bundle.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/glightbox/css/glightbox.min.css" %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3B4xPXHvnC+rQtwF+Q07c98x6OUE6Oe5P6lg40OW8q+6ImW+fl2Y4H43G2/6oZq" crossorigin="anonymous">
+
+
+  <!-- Main CSS File -->
+  <link href="{% static "assets/css/main.css" %}" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      
+      <a href="{% url "accueille" %}" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{% static "assets/img/favicon.webp" %}" alt=""> 
+        <h1 class="sitename">BRIDGESATS</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" >Accueil<br></a></li>
+          <li class="dropdown"><a href="#"><span>Plus</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#partenaire">Partenaire</a></li>
+              <li><a href="#academie">Academie</a></li>
+              <li><a href="#team">Equipe</a></li>     
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#academie">Academie</a></li>
+              <li><a href="{% url "blog" %}">Blog</a></li>
+              <li class="d-flex flex-row align-items-center justify-content-center">
+                <button id="theme-toggle" class="btn btn-sm btn-secondary rounded-5 d-flex flex-row align-items-center justify-content-center">
+                  <i style="font-size: x-large;" class="bi bi-moon" id="theme-icon"></i>
+                </button> 
+              </li>
+              <li class="d-flex flex-row align-items-center justify-content-center mt-3">
+                <a class="btn btn-sm rounded-5 btn-outline-secondary text-secondary" data-bs-toggle="modal" data-bs-target="#authModal">Newsletter</a>
+              </li>
+            </ul>
+          </li>
+          
+          <li><a href="#bitcoin" class="active">Bitcoin</a></li>
+          <li><a href="#labo">Laboratoire</a></li>
+          <li><a href="#immobilier">Immobilier</a></li>
+          <li><a href="#informatique">informatique</a></li>
+          <li><a href="#podcast">Production Audio-Visuelle</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+
+    </div>
+  </header>
+  
+ 
+  <main class="main">
+    
+    <!-- accueil Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="{% static "assets/img/hero-bg.jpg" %}" alt="" data-aos="fade-in">
+      <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-6 col-lg-8">
+            <h2> BRIDGESATS<span>.</span>Sarl</h2>
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade-show" role="alert">
+                  <strong>Message :</strong>{{ message }}
+                  <button type="button" class="btn btn-sm btn-primary btn-outline rounded-btn close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+            {% endfor %}
+            <p>Bridge Sats vous accompagne dans la construction immobilière, le développement de logiciels, et la production audiovisuelle. Nous vous offrons des solutions sur mesure, des formations spécialisées, et nous favorisons une croissance durable et inclusive grâce à l'adoption de Bitcoin.
+            </p>
+          </div>
+        </div>
+
+        <div class="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <i class="bi bi-currency-bitcoin"></i>
+              <h3><a href="{% url "bitcoin" %}">BitCoin</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-box">
+              <i class="bi bi-house"></i>
+              <h3><a href="{% url "immobilier" %}">Immobilier</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon-box">
+              <i class="bi bi-camera2"></i>
+              <h3><a href="{% url "production" %}">Production</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="icon-box">
+              <i class="bi bi-terminal"></i>
+              <h3><a href="{% url "informatique" %}">informatique</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="700">
+            <div class="icon-box">
+              <i class="bi bi-journal-bookmark"></i>
+              <h3><a href="{% url "academie" %}">Academie</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="700">
+            <div class="icon-box">
+              <i class="bi bi-lightbulb"></i>
+              <h3><a href="{% url "laboratoire" %}">Laboratoire</a></h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /accueil Section -->
+
+    
+    <div class="modal fade pt-5" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+      <div  class="modal-dialog">
+        <div style="border-radius: 20px;" class="modal-content">
+          <div class="modal-header">
+            <h5 style="font-size: 32px; font-weight: 700;" class="text-secondary" id="authModalLabel">Rejoignez la newsletter</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="" method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="email" class="form-label">Adresse email</label>
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text text-secondary">Nous ne partagerons jamais votre adresse email.</div>
+              </div>
+              
+              <div style="display: flex; justify-content: center;" class="mb-3">
+                <button style="background-color: chocolate; color: bisque; border-radius: 20px;" type="submit" class="btn">Enregistrez</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer ">
+            Si déjà fait ?
+            <a href="index.html">
+              <button style="background-color: rgba(0, 0, 0, 0); color: rgb(0, 0, 0); border-bottom: 4px solid rgba(143, 0, 0, 0.863);" type="button" class="btn">Annuler</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bitcoin Section -->
+    <section id="bitcoin" class="about section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <div class="col-lg-6 order-1 order-lg-2">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static "assets/img/principal.webp" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item ">
+                  <img src="{% static "assets/img/bitcoin1.PNG" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item ">
+                  <img src="{% static "assets/img/change.jpg" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static "assets/img/bitcoin2.PNG" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static "assets/img/bitcoin3.PNG" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static "assets/img/minage.jpg" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static "assets/img/minage2.png" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static "assets/img/minage3.jpg" %}" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-6 order-2 order-lg-1 content">
+            <h3>Solution BITCOIN</h3>
+            <p class="fst-italic">
+              En Afrique et dans le monde entier
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span> Accompagnement & Conseil : Nous aidons les entreprises à intégrer Bitcoin dans leurs opérations, en fournissant des ressources pédagogiques et un soutien pratique. </span></li>
+              <li><i class="bi bi-disc"></i> <span>Mining : Nous collaborons avec des partenaires locaux pour lancer des projets qui renforcent la résilience de producteurs d’énergie              </span></li>
+              <li><i class="bi bi-currency-exchange"></i> <span> Desk OTC : Nous simplifions l’acquisition de BTC via un service OTC (Over-The-Counter) sécurisé et adapté aux moyens de paiement locaux
+              </span></li>
+            </ul>
+            <p>
+              BRIDGESATS conçoit des solutions basées sur Bitcoin, accompagne les entreprises dans leur expansion en Afrique et assiste les gouvernements dans la mise en place d’une stratégie de développement durable axée sur Bitcoin.
+            </p>
+            <a href="{% url "bitcoin" %}" style="display: flex; justify-content: flex-start;" class="mb-0">
+              <button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">Lire plus</button>
+            </a>
+          </div>
+          
+        </div>
+        
+      </div>
+
+    </section><!-- /Bitcoin Section -->
+
+
+    <!-- laboratoire Section -->
+    <section id="labo" class="features section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+          <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100"><img src="{% static "assets/img/labo.jpg" %}" alt=""></div>
+          <div class="col-lg-6">
+
+            <div class="features-item d-flex ps-0 ps-lg-3 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-building flex-shrink-0"></i>
+              <div>
+                <h4>LABORATOIRE</h4>
+                <p>Notre laboratoire est spécialisé dans la recherche et le développement en électronique et en informatique. Nous concevons, prototypes et testons des systèmes électroniques innovants, et développons des logiciels embarqués et applicatifs.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-lightbulb flex-shrink-0"></i>
+              <div>
+                <h4>Expertise et Conseil :</h4>
+                <p>Bénéficiez de notre savoir-faire pour optimiser vos systèmes électriques et informatiques.
+                  Nos experts vous accompagnent dans vos projets, de la conception à la mise en œuvre.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+          
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-graph-up-arrow flex-shrink-0"></i>
+              <div>
+                <h4>Recherche et Développement :</h4>
+                <p>Soyez à la pointe de l'innovation grâce à nos projets de recherche en collaboration avec le monde académique et industriel.
+                  Développez des solutions personnalisées pour répondre à vos besoins spécifiques.</p>
+              </div>
+              
+            </div><!-- End Features Item-->
+            
+          </div>
+          <a href="{% url "laboratoire" %}" style="display: flex; justify-content: flex-center;" class="d-flex justify-content-center mb-0">
+            <button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">Lire plus</button>
+          </a>
+        </div>
+
+      </div>
+
+    </section><!-- /Laboratoire Section -->
+
+    <!-- immobilier Section -->
+    <section id="immobilier" class="about section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <div class="col-lg-6 order-1 order-lg-2">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade **immobilier-carousel**">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static "assets/img/immo2.jpeg" %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item active">
+                  <img src="assets/img/immo3.jpeg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/immo4.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/img/immo5.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item immobilier-carousel-item">
+                  <img src="assets/img/immo6.jpg" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-6 order-2 order-lg-1 content">
+            <h3>Agence IMMOBILIER</h3>
+            <p class="fst-italic">
+              Partout en RDC
+            </p>
+            <ul>
+              <li><i class="bi bi-house-check"></i> <span>Nous révolutionnons le secteur immobilier Congolais avec des solutions optimisées pour la construction de maisons, la vente de matériaux et la gestion de biens. Nous offrons une approche moderne pour concevoir et réaliser des projets immobiliers, tout en réduisant les coûts grâce à notre boutique de matériaux et à notre logiciel de gestion.</span></li>
+              <li><i class="bi bi-building-check"></i> <span> Votre projet, notre expertise.</span></li>
+              <li><i class="bi bi-geo-alt"></i> <span>Où que vous soyez en RDC, de la conception à la réalisation, nous sommes votre partenaire construction.</span></li>
+            </ul>
+            <p>
+              Notre entreprise de construction immobilière est votre partenaire de confiance pour réaliser tous vos projets. Forts de notre expérience et de notre expertise, nous vous proposons des solutions sur-mesure, alliant esthétique, fonctionnalité et respect de l'environnement. De la conception à la livraison, nous mettons tout en œuvre pour vous offrir un service de qualité et vous garantir entière satisfaction.            </p>
+          </div>
+          
+        </div>
+        
+      </div>
+      <div style="display: flex; justify-content: flex-center;" class="d-flex justify-content-center mb-0 mt-3">
+        <a href="{% url "immobilier" %}"><button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">En savoir plus</button></a>
+      </div>
+    </section><!-- /immobilier Section -->
+
+    <!-- informatique Section -->
+    <section id="informatique" class="features section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+          <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100"><img src="{% static "assets/img/info.jpg" %}" alt=""></div>
+          <div class="col-lg-6">
+
+            <div class="features-item d-flex ps-0 ps-lg-3 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-terminal flex-shrink-0"></i>
+              <div>
+                <h4>INFORMATIQUE</h4>
+                <p>Notre laboratoire est spécialisé dans la recherche et le développement en électronique et en informatique. Nous concevons, prototypes et testons des systèmes électroniques innovants, et développons des logiciels embarqués et applicatifs.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-stars flex-shrink-0"></i>
+              <div>
+                <h4>Expertise et Conseil :</h4>
+                <p>Bénéficiez de notre savoir-faire pour optimiser vos systèmes embarqués et informatiques.
+                  Nos experts vous accompagnent dans vos projets, de la conception à la mise en œuvre.</p>
+              </div>
+            </div><!-- End Features Item-->
+
+          
+            <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-graph-up-arrow flex-shrink-0"></i>
+              <div>
+                <h4>Recherche et Développement :</h4>
+                <p>Soyez à la pointe de l'innovation grâce à nos projets de recherche en collaboration avec le monde académique et industriel.
+                  Développez des solutions personnalisées pour répondre à vos besoins spécifiques.</p>
+              </div>
+              
+            </div><!-- End Features Item-->
+            
+          </div>
+          <a href="{% url "laboratoire" %}" style="display: flex; justify-content: flex-center;" class="d-flex justify-content-center mb-0">
+            <button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">Lire plus</button>
+          </a>
+        </div>
+
+      </div>
+
+    </section><!-- /informatique Section -->
+
+    <!-- académie Section -->
+    <section id="academie" class="stats section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 align-items-center justify-content-between">
+
+          <div class="col-lg-5">
+            <img src="{% static "assets/img/college-entrance-exam-bro.webp" %}" alt="" class="img-fluid">
+          </div>
+
+          <div class="col-lg-6">
+
+            <h3 class="fw-bold fs-2 mb-3">Bridgesats Académie</h3>
+            <p>
+              Nous offrons des formations diversifiées pour développer des compétences essentielles à la vie pratique. Nos programmes incluent des cours en langues étrangères, des formations pratiques sur comment entreprendre au Congo, sur Bitcoin ainsi que les métiers du cyberespace.
+            </p>
+
+            <div class="row gy-4">
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-currency-bitcoin flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>BITCOIN</strong> <span>Formation</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-keyboard flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>INFORMATIQUE</strong> <span>Formation</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-camera2 flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>PRODUCTION AUDIO-VISUELLE</strong> <span>Formation</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-journal-richtext flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>PROJETS</strong> <span>developpé</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div style="display: flex; justify-content: flex-center;" class="d-flex justify-content-center mb-0">
+        <a href="{% url "academie" %}"><button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">Visitez</button></a>
+      </div>
+
+    </section><!-- /académie Section -->
+
+    <!-- Podcasts Section -->
+    <section id="podcast" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Podcasts</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+          <h4>Nous fournissons un soutien complet pour vos projets audiovisuels, incluant la création et le montage de podcasts. Avec du matériel de pointe et un espace dédié, nous aidons à la production et à la diffusion de contenu, tout en promouvant la distribution Open-Source et l’accompagnement des projets locaux.</h4>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div style="
+              background-image: url('{% static "assets/img/pod.jpeg" %}');
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+          " class="service-item position-relative">
+              <div style="border-radius: 50%" class="icon">
+                <i class="bi bi-headphones"></i>
+              </div>
+              <a href="{% url "production" %}" class="stretched-link">
+                <h2 class="text-light">Cryptomonnaie</h2>
+              </a>
+              <p class="text-white">Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          
+
+        </div>
+
+      </div>
+      <a href="{% url "production" %}" style="display: flex; justify-content: flex-center;" class="d-flex justify-content-center mb-0 mt-3">
+        <button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">Lire plus</button>
+      </a>
+    </section><!-- /Podcasts Section -->
+
+    <!-- 
+    <section id="testimonials" class="testimonials section dark-background">
+
+      <img src="assets/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <h3>Saul Goodman</h3>
+                <h4>Ceo &amp; Founder</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div> 
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <h3>Sara Wilsson</h3>
+                <h4>Designer</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div> 
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <h3>Jena Karlis</h3>
+                <h4>Store Owner</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <h3>Matt Brandon</h3>
+                <h4>Freelancer</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                <h3>John Larson</h3>
+                <h4>Entrepreneur</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section> -->
+
+  
+    <!-- Partenaire Section -->
+<section id="partenaire" class="clients section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="swiper init-swiper">
+      <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 100,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": "auto",
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+          },
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 2,
+              "spaceBetween": 40
+            },
+            "480": {
+              "slidesPerView": 3,
+              "spaceBetween": 60
+            },
+            "640": {
+              "slidesPerView": 4,
+              "spaceBetween": 80
+            },
+            "992": {
+              "slidesPerView": 6,
+              "spaceBetween": 120
+            }
+          }
+        }
+      </script>
+      <div class="swiper-wrapper align-items-center">
+        {% if partenaire %}
+        {% for i in partenaire %}
+          <div class="swiper-slide">
+            <a href="{{ i.nom }}">
+              <img style="border-radius: 50%" src="{{ i.image.url }}" class="img-fluid" alt="">
+            </a>
+          </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div style="display: flex; justify-content: center;" class="mb-0">
+        <a href="mailto:contact@bridgesats.com">
+          <button style="background-color: #ff6600; color: rgb(255, 255, 255); border-radius: 20px;" type="button" class="btn">Devenez partenaire</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section><!-- /Partenaire Section -->
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Equipe</h2>
+        <p>Notre équipe</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+          {% for i in equipe %}
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+              <div class="team-member">
+                <div class="member-img">
+                  <img src="{{ i.image.url }}" class="img-fluid" alt="">
+                  <div class="social">
+                    <a href="mailto:{{ i.email }}"><i class="bi bi-envelope"></i></a>
+                    <a href="{{ i.github }}"><i class="bi bi-github"></i></a>
+                  </div>
+                </div>
+                <div class="social">
+                  {% if i.email %}
+                  <a href="mailto:{{ i.email }}"><i class="bi bi-envelope"></i></a>
+                  {% endif %}
+                  {% if i.github %}
+                  <a href="{{ i.github }}"><i class="bi bi-github"></i></a>
+                  {% endif %}
+                  {% if i.email %}
+                  <a href="{{ i.linkedin }}"><i class="bi bi-linkedin"></i></a>
+                  {% endif %}
+                  {% if i.tweeter %}
+                  <a href="{{ i.tweeter }}"><i class="bi bi-twitter"></i></a>
+                  {% endif %}
+                </div>
+
+                <div class="member-info">
+                  <h4>{{ i.nom }}</h4>
+                  <span>{{ i.fonction }}</span>
+                </div>
+              </div>
+            </div><!-- End Team Member -->
+          {% endfor %}
+
+
+        </div>
+
+      </div>
+      <div style="display: flex; justify-content: flex-center;" class="d-flex justify-content-center mb-0 mt-3">
+        <a href="{% url "equipe" %}"><button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">Consultez l'équipe</button></a>
+      </div>
+    </section><!-- /Team Section -->
+
+    <!-- Recent Posts Section -->
+    <section id="recent-posts" class="recent-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Articles récents</h2>
+
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        {% if liste_articles %}
+        <div class="row gy-5">
+          {% for i in liste_articles %}
+            <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="post-box">
+                <div class="post-img"><img src="{{ i.image.url }}" class="img-fluid" alt=""></div>
+                <div class="meta pl-3">
+                  <span class="post-date">{{ i.date_added }}</span>
+                  {% if i.author %}
+                    <span class="post-author"> / {{ i.author }}</span>
+                  {% else %}
+                    <span class="post-author"> / BS-Admin</span>
+                  {% endif %}
+                </div>
+                <h3 class="post-title">{{ i.title }}</h3>
+                <p>{{ i.intro|truncatechars:20 }}</p>
+                <a href="detail/{{ i.slug }}" class="readmore stretched-link"><span>Lire plus sur l'article</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        {% else %} 
+        {% endif %}
+
+      </div>
+      <div style="display: flex; justify-content: flex-center;" class="d-flex justify-content-center mb-0 mt-3">
+        <a href="{% url "blog" %}"><button style="background-color: #ff6600; color: bisque; border-radius: 20px;" type="button" class="btn">Voir le blog</button></a>
+      </div>
+    </section><!-- /Recent Posts Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Contactez nous</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?q=lien+de+goma-rdc+sur+google+mapsFORM=HDRSC6cp=-1.679065~29.230944lvl=14.0" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div><!-- End Google Maps -->
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Addresse</h3>
+                <p>RDC, NORD-KIVU, Goma ville</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Appelez-nous</h3>
+                <p>+243 971 787 744</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Ecrivez-nous</h3>
+                <p>contact@bridgesats.com</p>
+              </div>
+            </div><!-- End Info Item -->
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="" method="POST" class="contact" data-aos="fade-up" data-aos-delay="200">
+              {% csrf_token %}
+                {% if errors %}
+                    <div class="alert alert-danger">
+                        {% for field, error in errors.items %}
+                            {{ field }} : {{ error }}<br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="nom" id="nom" class="form-control" placeholder="Votre nom" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="sujet" id="sujet" placeholder="Objet" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" id="message" rows="3" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                 
+                  <button type="submit">Envoyez</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">BRIDGESATS</span>
+            </a>
+            <div class="footer-contact pt-3">
+              <p>RDC</p>
+              <p>Goma, Himbi</p>
+              <p class="mt-3"><strong>Phone:</strong> <span>+243 000 000 000</span></p>
+              <p><strong>Email:</strong> <span>contact@Bridgesats.com</span></p>
+            </div>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Liens importants</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#accueil"> Accueille</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#"> A propos</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#"> Services</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#"> Conditions d'utilisation</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#"> Confidentialité</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Nos Services</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#bitcoin"> Bitcoin</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#immobilier"> Immobilier</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#services"> Production audio-visuelle</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#academie"> Academie</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#labo"> Laboratoire</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-12 footer-newsletter">
+            <h4>Rejoignez notre Newsletter</h4>
+            <p>Inscrivez-vous à notre Newsletter and recevez les nouvelles de nos produits et services!</p>
+            <form action="" method="post" class="">
+              {% csrf_token %}
+              <div class="newsletter-form"><input type="email" id="email" name="email"><button style="  border: 0;
+  font-size: 16px;
+  padding: 0 20px;
+  margin: -7px -8px -7px 0;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  transition: 0.3s;
+  border-radius: 0 4px 4px 0;" type="submit" value="Rejoignez maintenant">Rejoignez</button></div>
+              <div class="loading">Complétez ce champs</div>
+              
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="copyright">
+      <div class="container text-center">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">BRIDGESATS</strong> <span>tout droit reservé</span></p>
+        <div class="credits">
+          Conçu par <a href="{% url "admin:index" %}">Bridgesats</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "assets/vendor/php-email-form/validate.js" %}"></script>
+  <script src="{% static "assets/vendor/aos/aos.js" %}"></script>
+  <script src="{% static "assets/vendor/swiper/swiper-bundle.min.js" %}"></script>
+  <script src="{% static "assets/vendor/glightbox/js/glightbox.min.js" %}"></script>
+  <script src="{% static "assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" %}"></script>
+  <script src="{% static "assets/vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+  <script src="{% static "assets/vendor/purecounter/purecounter_vanilla.js" %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C8fCxF2L0Z61n50+2V07c4572930452265026309621f865857239343b0614595" crossorigin="anonymous"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static "assets/js/main.js" %}"></script>
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark-background');
+    
+      if (document.documentElement.classList.contains('dark-background')) {
+        themeIcon.classList.remove('bi-moon');
+        themeIcon.classList.add('bi-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.classList.remove('bi-sun');
+        themeIcon.classList.add('bi-moon');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    
+    // Check for saved theme on page load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark-background');
+      themeIcon.classList.remove('bi-moon');
+      themeIcon.classList.add('bi-sun');
+    }
+    
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    </script>
+    
+  
+
+</body>
+
+</html>

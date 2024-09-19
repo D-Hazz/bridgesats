@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Blog - Bridgesats</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static "assets1/img/favicon.webp" %}" rel="icon">
+  <link href="{% static "assets1/img/favicon.webp" %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "assets1/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/bootstrap-icons/bootstrap-icons.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/aos/aos.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/glightbox/css/glightbox.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets1/vendor/swiper/swiper-bundle.min.css" %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static "assets1/css/main.css" %}" rel="stylesheet">
+
+</head>
+
+<body class="blog-details-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="{% url "accueille" %}" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{% static "assets/img/favicon.webp" %}" alt=""> 
+        <h1 class="sitename">BRIDGESATS</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url "accueille" %}" >Accueil<br></a></li>
+          <li class="dropdown"><a href="#"><span>Plus</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="{% url "accueille" %}">Partenaire</a></li>
+              <li><a href="{% url "academie" %}">Academie</a></li>
+              <li><a href="{% url "equipe" %}">Equipe</a></li>     
+              
+
+              <li class="d-flex flex-row align-items-center justify-content-center">
+                <button id="theme-toggle" class="btn btn-sm btn-secondary rounded-5 d-flex flex-row align-items-center justify-content-center">
+                  <i style="font-size: x-large;" class="bi bi-moon" id="theme-icon"></i>
+                </button> 
+              </li>
+              <li class="d-flex flex-row align-items-center justify-content-center mt-3">
+                <a class="btn btn-sm rounded-5 btn-outline-secondary text-secondary" data-bs-toggle="modal" data-bs-target="#authModal">Newsletter</a>
+              </li>
+            </ul>
+          </li>
+          
+          <li><a href="{% url "bitcoin" %}" class="active">Bitcoin</a></li>
+          <li><a href="{% url "laboratoire" %}">Laboratoire</a></li>
+          <li><a href="{% url "immobilier" %}">Immobilier</a></li>
+          <li><a href="{% url "informatique" %}">informatique</a></li>
+          <li><a href="{% url "production" %}">Production Audio-Visuelle</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url({% static "assets/img/hero-bg.jpg" %});">
+      <div class="container">
+        <h1>{{ post.title }}</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url "accueille" %}">Accueil</a></li>
+            <li class="current">Bonne lecture</li>
+          </ol>
+          {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message :</strong>{{ message }}
+                    <button type="button" class="btn btn-sm btn-primary btn-outline rounded-btn close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+          {% endfor %}
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-8">
+
+          <!-- Blog Details Section -->
+          <section id="blog-details" class="blog-details section">
+            <div class="container">
+
+              <article class="article">
+
+                <div class="post-img">
+                  <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                </div>
+
+                <h2 class="title">{{ post.title }}</h2>
+
+                <div class="meta-top">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{ post.author}}</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ post.date_added }}</time></a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">{{ comment_count }}</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-heart-fill"></i> <a href="blog-details.html">{{ comment_count }}</a></li>
+                  </ul>
+                </div><!-- End meta top -->
+
+                <div class="content">
+            
+                  <blockquote>
+                    <p>
+                      {{ post.intro|safe }}                   
+                    </p>
+                  </blockquote>
+
+                  <p>
+                    {{ post.body|linebreaks }}
+                  </p>
+
+                </div><!-- End post content -->
+
+                <div class="meta-bottom">
+                  <i class="bi bi-tags"></i>
+                  <ul class="cats">
+                    <li><a href="#">{{ post.category }}</a></li>
+                  </ul>
+
+                 
+                </div><!-- End meta bottom -->
+
+              </article>
+
+            </div>
+          </section><!-- /Blog Details Section -->
+
+          <!-- Blog Author Section -->
+          <section id="blog-author" class="blog-author section">
+
+            <div class="container">
+              <div class="author-container d-flex align-items-center">
+                <img style=" max-width: 100px;
+  margin-right: 20px;
+  border: 2px solid rgb(138, 48, 7);
+  border-radius: 50%;" src="{% static "assets1/img/userdefault.png" %}" class="rounded-circle flex-shrink-0" alt="">
+                <div>
+                  <h4>{{ post.author }}</h4>
+                  <div class="social-links">
+                    <a href="https://x.com/#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
+                    <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
+                  </div>
+                  <p>
+Signature                             </p>
+                </div>
+              </div>
+            </div>
+
+          </section><!-- /Blog Author Section -->
+
+          <!-- Blog Comments Section -->
+          <section id="blog-comments" class="blog-comments section">
+
+            <div class="container">
+
+              <h4 class="comments-count">{{ comment_count }} Comments</h4>
+              {% for i in comments %}
+              <div id="comment-1" class="comment">
+                <div class="d-flex">
+                  <div class="comment-img"><img src="{% static "assets1/img/userdefault.png" %}" alt=""></div>
+                  <div>
+                    <h5><a href="">{% if i.name %}{{ i.name }}{% else %}Inconnue{% endif %}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                    <time datetime="2020-01-01">{{ i.date_added }}</time>
+                    <p>
+                      {{ i.body }}
+                    </p>
+                  </div>
+                </div>
+              </div><!-- End comment #1 -->
+              {% endfor %}
+
+
+            </div>
+
+          </section><!-- /Blog Comments Section -->
+
+          <!-- Comment Form Section -->
+          <section id="comment-form" class="comment-form section">
+            <div class="container">
+
+              <form action="" method="POST">
+                {% csrf_token %}
+                <h4>Commentez l'article</h4>
+                <p>Votre adresse email ne sera divilguée </p>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <input name="name" id="name" type="text" class="form-control" placeholder="Votre nom">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input name="email" type="text" class="form-control" placeholder="Votre E-mail: Pas obligatoire">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <textarea name="body" id="body" class="form-control" rows="2" placeholder="Votre réaction"></textarea>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-block btn-primary">Commentez</button>
+                </div>
+
+              </form>
+
+            </div>
+          </section><!-- /Comment Form Section -->
+
+        </div>
+
+        <div class="col-lg-4 sidebar">
+
+          <div class="widgets-container">
+
+            <!-- Search Widget -->
+            <div class="search-widget widget-item">
+
+              <h3 class="widget-title">Explorez...</h3>
+              <form action="{% url "search" %}">
+                <input type="text" name="query" placeholder="Recherchez pa-ci">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+              </form>
+
+            </div><!--/Search Widget -->
+
+            <!-- Categories Widget -->
+            <div class="categories-widget widget-item">
+
+              <h3 class="widget-title">Categories</h3>
+              <ul class="mt-3">
+                {% for categorys in cats  %}
+                  <li><a href="{% url 'blog-cat' categorys.cat_id %}">{{ categorys.name }} <span></span></a></li>
+                {% endfor %}
+                
+              </ul>
+
+            </div><!--/Categories Widget -->
+
+            <!-- Recent Posts Widget -->
+            <div class="recent-posts-widget widget-item">
+
+              <h3 class="widget-title">Articles associés</h3>
+              {% for art in aer %}
+              {% if art.id != article.id %}
+              <div class="post-item">
+                <img src="{{art.image.url}}" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="{{ art.slug }}">{{ art.intro|safe|truncatewords_html:4}}</a></h4>
+                  <time datetime="2020-01-01">{{ art.date_added }}</time>
+                </div>
+              </div><!-- End recent post item-->
+              {% endif %}
+                
+              {% empty %}
+              <p>Pas d'article de meme catégorie</p>
+              {% endfor %}
+
+            </div><!--/Recent Posts Widget -->
+
+            <!-- Tags Widget -->
+            <div class="tags-widget widget-item">
+
+              <h3 class="widget-title">Tags</h3>
+              <p>Coming soon</p>
+              <ul>
+                <li><a href="#">bitcoin</a></li>
+                <li><a href="#">immobilier</a></li>
+                <li><a href="#">laboratoire</a></li>
+                <li><a href="#">podcasts</a></li>
+                <li><a href="#">Marketing</a></li>
+                <li><a href="#">video</a></li>
+                <li><a href="#">academie</a></li>
+                <li><a href="#">blog</a></li>
+                <li><a href="#">minage</a></li>
+                
+                
+              </ul>
+
+            </div><!--/Tags Widget -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container copyright text-center">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">BRIDGESATS</strong> <span>Tout droit revervé</span></p>
+      <div class="credits">
+
+        Conçu par <a href="{% url "admin:index" %}">Bridgesats</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static "assets1/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "assets1/vendor/php-email-form/validate.js" %}"></script>
+  <script src="{% static "assets1/vendor/aos/aos.js" %}"></script>
+  <script src="{% static "assets1/vendor/glightbox/js/glightbox.min.js" %}"></script>
+  <script src="{% static "assets1/vendor/swiper/swiper-bundle.min.js" %}"></script>
+  <script src="{% static "assets1/vendor/imagesloaded/imagesloaded.pkgd.min.js" %}"></script>
+  <script src="{% static "assets1/vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static "assets1/js/main.js" %}"></script>
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark-background');
+    
+      if (document.documentElement.classList.contains('dark-background')) {
+        themeIcon.classList.remove('bi-moon');
+        themeIcon.classList.add('bi-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.classList.remove('bi-sun');
+        themeIcon.classList.add('bi-moon');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    
+    // Check for saved theme on page load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark-background');
+      themeIcon.classList.remove('bi-moon');
+      themeIcon.classList.add('bi-sun');
+    }
+    
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    </script>
+    
+</body>
+
+</html>

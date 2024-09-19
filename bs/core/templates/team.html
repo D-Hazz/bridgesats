@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Bridgesats sarl-EQUIPE</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static "assets/img/favicon.webp" %}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/bootstrap-icons/bootstrap-icons.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/aos/aos.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/swiper/swiper-bundle.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/glightbox/css/glightbox.min.css" %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3B4xPXHvnC+rQtwF+Q07c98x6OUE6Oe5P6lg40OW8q+6ImW+fl2Y4H43G2/6oZq" crossorigin="anonymous">
+
+
+  <!-- Main CSS File -->
+  <link href="{% static "assets/css/main.css" %}" rel="stylesheet">
+
+</head>
+
+<body class="team-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="{% url "accueille" %}" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{% static "assets/img/favicon.webp" %}" alt=""> 
+        <h1 class="sitename">BRIDGESATS</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url "accueille" %}" >Accueil<br></a></li>
+          <li class="dropdown"><a href="#"><span>Plus</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="{% url "accueille" %}">Partenaire</a></li>
+              <li><a href="{% url "academie" %}">Academie</a></li>
+              <li><a href="{% url "equipe" %}">Equipe</a></li>     
+              
+
+              <li class="d-flex flex-row align-items-center justify-content-center">
+                <button id="theme-toggle" class="btn btn-sm btn-secondary rounded-5 d-flex flex-row align-items-center justify-content-center">
+                  <i style="font-size: x-large;" class="bi bi-moon" id="theme-icon"></i>
+                </button> 
+              </li>
+              <li class="d-flex flex-row align-items-center justify-content-center mt-3">
+                <a class="btn btn-sm rounded-5 btn-outline-secondary text-secondary" data-bs-toggle="modal" data-bs-target="#authModal">Newsletter</a>
+              </li>
+            </ul>
+          </li>
+          
+          <li><a href="{% url "bitcoin" %}" class="active">Bitcoin</a></li>
+          <li><a href="{% url "laboratoire" %}">Laboratoire</a></li>
+          <li><a href="{% url "immobilier" %}">Immobilier</a></li>
+          <li><a href="{% url "informatique" %}">informatique</a></li>
+          <li><a href="{% url "production" %}">Production Audio-Visuelle</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url({% static "assets/img/hero-bg.jpg" %});">
+      <div class="container">
+        <h1>Equipe</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url "blog" %}">Blog</a></li>
+            <li class="current">Equipe</li>
+          </ol>
+          {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message :</strong>{{ message }}
+                    <button type="button" class="btn btn-sm btn-primary btn-outline rounded-btn close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+          {% endfor %}
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+          {% if equipe %}
+            {% for i in equipe %}
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-member">
+                  <div class="member-img">
+                    <img src="{{ i.image.url }}" class="img-fluid" alt="">
+                    <div class="social">
+                      {% if i.email %}
+                      <a href="mailto:{{ i.email }}"><i class="bi bi-envelope"></i></a>
+                      {% endif %}
+                      {% if i.github %}
+                      <a href="{{ i.github }}"><i class="bi bi-github"></i></a>
+                      {% endif %}
+                      {% if i.email %}
+                      <a href="{{ i.linkedin }}"><i class="bi bi-linkedin"></i></a>
+                      {% endif %}
+                      {% if i.tweeter %}
+                      <a href="{{ i.tweeter }}"><i class="bi bi-twitter"></i></a>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ i.nom }}</h4>
+                    <span>{{ i.fonction }}</span>
+                  </div>
+                </div>
+              </div><!-- End Team Member -->
+            {% endfor %}
+          {% endif %}
+          
+
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">BRIDGESATS</span>
+            </a>
+            <div class="footer-contact pt-3">
+              <p>RDC</p>
+              <p>Goma, Himbi</p>
+              <p class="mt-3"><strong>Phone:</strong> <span>+243 000 000 000</span></p>
+              <p><strong>Email:</strong> <span>contact@Bridgesats.com</span></p>
+            </div>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+  
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Liens importants</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#accueil"> Accueille</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#"> A propos</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#"> Services</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#"> Conditions d'utilisation</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#"> Confidentialité</a></li>
+            </ul>
+          </div>
+  
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Nos Services</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#bitcoin"> Bitcoin</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#immobilier"> Immobilier</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#services"> Production audio-visuelle</a></li>
+              <li><i class="bi bi-chevron-left"></i> <a href="#academie"> Academie</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#labo"> Laboratoire</a></li>
+            </ul>
+          </div>
+  
+          <div class="col-lg-4 col-md-12 footer-newsletter">
+            <h4>Rejoignez notre Newsletter</h4>
+            <p>Inscrivez-vous à notre Newsletter and recevez les nouvelles de nos produits et services!</p>
+            <form action="" method="post" class="">
+              {% csrf_token %}
+              <div class="newsletter-form"><input type="email" id="email" name="email"><button style="  border: 0;
+  font-size: 16px;
+  padding: 0 20px;
+  margin: -7px -8px -7px 0;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  transition: 0.3s;
+  border-radius: 0 4px 4px 0;" type="submit" value="Rejoignez maintenant">Rejoignez</button></div>
+              <div class="loading">Complétez ce champs</div>
+              
+            </form>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="copyright">
+      <div class="container text-center">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">BRIDGESATS</strong> <span>tout droit reservé</span></p>
+        <div class="credits">
+          Conçu par <a href="{% url "admin:index" %}">Bridgesats</a>
+        </div>
+      </div>
+    </div>
+  
+  </footer>
+  
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+  <!-- Vendor JS Files -->
+  <script src="{% static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "assets/vendor/php-email-form/validate.js" %}"></script>
+  <script src="{% static "assets/vendor/aos/aos.js" %}"></script>
+  <script src="{% static "assets/vendor/swiper/swiper-bundle.min.js" %}"></script>
+  <script src="{% static "assets/vendor/glightbox/js/glightbox.min.js" %}"></script>
+  <script src="{% static "assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" %}"></script>
+  <script src="{% static "assets/vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+  <script src="{% static "assets/vendor/purecounter/purecounter_vanilla.js" %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C8fCxF2L0Z61n50+2V07c4572930452265026309621f865857239343b0614595" crossorigin="anonymous"></script>
+  
+  <!-- Main JS File -->
+  <script src="{% static "assets/js/main.js" %}"></script>
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark-background');
+    
+      if (document.documentElement.classList.contains('dark-background')) {
+        themeIcon.classList.remove('bi-moon');
+        themeIcon.classList.add('bi-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.classList.remove('bi-sun');
+        themeIcon.classList.add('bi-moon');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    
+    // Check for saved theme on page load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark-background');
+      themeIcon.classList.remove('bi-moon');
+      themeIcon.classList.add('bi-sun');
+    }
+    
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    </script>
+    
+  
+  </body>
+  
+  </html>
